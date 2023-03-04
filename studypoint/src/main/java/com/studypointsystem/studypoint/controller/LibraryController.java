@@ -14,44 +14,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.studypointsystem.studypoint.entity.User;
-import com.studypointsystem.studypoint.service.UserService;
+import com.studypointsystem.studypoint.entity.Library;
+import com.studypointsystem.studypoint.service.LibraryService;
 
 @RestController
-public class UserController {
+public class LibraryController {
 	
 	@Autowired
-	public UserService userService;
+	public LibraryService libraryService;
 	
-	@GetMapping("/users")
+	@GetMapping("/libraries")
 	@ResponseBody
-	public List<User> getAllUser(){
-		return this.userService.getAllUser();
-	}
-	
-	@PostMapping("/user")
-	public User addUser(@RequestBody User user) {
+	public List<Library>getAllLibrary(){
 		
-		return this.userService.addUser(user);
+		return this.libraryService.getAllLibrary();
 	}
 	
-	@PutMapping("/user")
-	public User updateUser(@RequestBody User user) {
-		return this.userService.updateUser(user);
+	@PostMapping("/library")
+	public Library addLibrary(@RequestBody Library library) {
+		return this.libraryService.addLibrary(library);
 	}
 	
-	@GetMapping("/user /{userId}")
-	public User getUser (@PathVariable String userId) {
+	@PutMapping("/library")
+	public Library updateLibrary(@RequestBody Library library) {
+		return this.libraryService.updateLibrary(library);
+	}
+	
+	@GetMapping("/library/{libraryId}")
+	public Library getLibrary (@PathVariable int libraryId) {
 		
-		return this.userService.getUser(userId);
+		return this.libraryService.getLibrary(libraryId);
 	}
 	
-	
-	@DeleteMapping("/user /{userId}")
-	public ResponseEntity<HttpStatus>deleteUser(@PathVariable String userId)
+	@DeleteMapping("/library/{libraryId}")
+	public ResponseEntity<HttpStatus>updateLibrary(@PathVariable int libraryId)
 	{
 		try {
-			this.userService.deleteUser(userId);
+			this.libraryService.deleteLibrary(libraryId);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		catch (Exception e) {
@@ -59,4 +58,5 @@ public class UserController {
 		}
 	}
 
+	
 }

@@ -14,49 +14,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.studypointsystem.studypoint.entity.User;
-import com.studypointsystem.studypoint.service.UserService;
+import com.studypointsystem.studypoint.entity.Book;
+import com.studypointsystem.studypoint.service.BookService;
 
 @RestController
-public class UserController {
+public class BookController {
 	
 	@Autowired
-	public UserService userService;
+	public BookService bookService;
 	
-	@GetMapping("/users")
+	@GetMapping("/books")
 	@ResponseBody
-	public List<User> getAllUser(){
-		return this.userService.getAllUser();
+	public List<Book> getAllBook(){
+		return this.bookService.getAllBook();
 	}
-	
-	@PostMapping("/user")
-	public User addUser(@RequestBody User user) {
 		
-		return this.userService.addUser(user);
+	@PostMapping("/book")
+	public Book addBook(@RequestBody Book book) {		
+			return this.bookService.addBook(book);
 	}
 	
-	@PutMapping("/user")
-	public User updateUser(@RequestBody User user) {
-		return this.userService.updateUser(user);
+	@PutMapping("/book")
+	public Book updateUser(@RequestBody Book book) {
+		return this.bookService.updateBook(book);
 	}
 	
-	@GetMapping("/user /{userId}")
-	public User getUser (@PathVariable String userId) {
-		
-		return this.userService.getUser(userId);
+	@GetMapping("/book/{bookId}")
+	public Book getUser (@PathVariable String bookId) {
+		return this.bookService.getBook(bookId);
 	}
 	
-	
-	@DeleteMapping("/user /{userId}")
-	public ResponseEntity<HttpStatus>deleteUser(@PathVariable String userId)
+	@DeleteMapping("/book/{bookId}")
+	public ResponseEntity<HttpStatus>deleteUser(@PathVariable String bookId)
 	{
 		try {
-			this.userService.deleteUser(userId);
+			this.bookService.deleteBook(bookId);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
 }

@@ -14,44 +14,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.studypointsystem.studypoint.entity.User;
-import com.studypointsystem.studypoint.service.UserService;
+import com.studypointsystem.studypoint.entity.Facility;
+import com.studypointsystem.studypoint.service.FacilityService;
 
 @RestController
-public class UserController {
+public class FacilityController {
 	
 	@Autowired
-	public UserService userService;
+	public FacilityService facilityService;
 	
-	@GetMapping("/users")
+	@GetMapping("/facilities")
 	@ResponseBody
-	public List<User> getAllUser(){
-		return this.userService.getAllUser();
+	public List<Facility> getAllFacility(){
+		return this.facilityService.getAllFacility();
 	}
 	
-	@PostMapping("/user")
-	public User addUser(@RequestBody User user) {
+	@PostMapping("/facility")
+	public Facility addFacility(@RequestBody Facility facility) {
 		
-		return this.userService.addUser(user);
+		return this.facilityService.addFacility(facility);
+	}
+	@PutMapping("/facility")
+	public Facility updateUser(@RequestBody Facility facility) {
+		return this.facilityService.updateFacility(facility);
 	}
 	
-	@PutMapping("/user")
-	public User updateUser(@RequestBody User user) {
-		return this.userService.updateUser(user);
-	}
-	
-	@GetMapping("/user /{userId}")
-	public User getUser (@PathVariable String userId) {
+	@GetMapping("/facility/{facilityId}")
+	public Facility getUser (@PathVariable int facilityId) {
 		
-		return this.userService.getUser(userId);
+		return this.facilityService.getFacility(facilityId);
 	}
 	
 	
-	@DeleteMapping("/user /{userId}")
-	public ResponseEntity<HttpStatus>deleteUser(@PathVariable String userId)
+	@DeleteMapping("/facility/{facilityId}")
+	public ResponseEntity<HttpStatus>deleteFacility(@PathVariable int facilityId)
 	{
 		try {
-			this.userService.deleteUser(userId);
+			this.facilityService.deleteFacility(facilityId);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		catch (Exception e) {
@@ -60,3 +59,5 @@ public class UserController {
 	}
 
 }
+
+

@@ -14,49 +14,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.studypointsystem.studypoint.entity.User;
-import com.studypointsystem.studypoint.service.UserService;
+import com.studypointsystem.studypoint.entity.Canteen;
+import com.studypointsystem.studypoint.service.CanteenService;
 
 @RestController
-public class UserController {
+public class CanteenController {
 	
 	@Autowired
-	public UserService userService;
+	public CanteenService canteenService;
 	
-	@GetMapping("/users")
+	@GetMapping("/canteen")
 	@ResponseBody
-	public List<User> getAllUser(){
-		return this.userService.getAllUser();
+	public List<Canteen> getAllCanteen(){
+		return this.canteenService.getAllItem();
 	}
 	
-	@PostMapping("/user")
-	public User addUser(@RequestBody User user) {
+	@PostMapping("/canteen")
+	public Canteen addCanteen(@RequestBody Canteen canteen) {
 		
-		return this.userService.addUser(user);
+		return this.canteenService.addItem(canteen);
 	}
 	
-	@PutMapping("/user")
-	public User updateUser(@RequestBody User user) {
-		return this.userService.updateUser(user);
+	@PutMapping("/canteen")
+	public Canteen updateUser(@RequestBody Canteen canteen) {
+		return this.canteenService.updateItem(canteen);
 	}
 	
-	@GetMapping("/user /{userId}")
-	public User getUser (@PathVariable String userId) {
-		
-		return this.userService.getUser(userId);
+	@GetMapping("/canteen/{itemId}")
+	public Canteen getItem(@PathVariable int itemId) {
+		return this.canteenService.getItem(itemId);
 	}
 	
-	
-	@DeleteMapping("/user /{userId}")
-	public ResponseEntity<HttpStatus>deleteUser(@PathVariable String userId)
+	@DeleteMapping("/canteen/{itemId}")
+	public ResponseEntity<HttpStatus>deleteUser(@PathVariable int itemId)
 	{
 		try {
-			this.userService.deleteUser(userId);
+			this.canteenService.deleteItem(itemId);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
 }

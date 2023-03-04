@@ -14,49 +14,53 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.studypointsystem.studypoint.entity.User;
-import com.studypointsystem.studypoint.service.UserService;
+import com.studypointsystem.studypoint.entity.Resource;
+import com.studypointsystem.studypoint.service.ResourceService;
 
 @RestController
-public class UserController {
+public class ResourceController {
 	
 	@Autowired
-	public UserService userService;
+	public ResourceService resourceService;
 	
-	@GetMapping("/users")
+	@GetMapping("/resources")
 	@ResponseBody
-	public List<User> getAllUser(){
-		return this.userService.getAllUser();
+	public List<Resource>getAllResource() {
+		return this.resourceService.getAllResource();
 	}
 	
-	@PostMapping("/user")
-	public User addUser(@RequestBody User user) {
+	@PostMapping("/resource")
+	public Resource addResource(@RequestBody Resource resource) {
+		 
+		return this.resourceService.addResource(resource);
+	}
+	
+	@PutMapping("/resource")
+	public Resource updateResource(@RequestBody Resource resource) {
+		return this.resourceService.updateResource(resource);
+	}
+	
+	@GetMapping("/resource/{resourceId}")
+	public Resource getResource (@PathVariable int resourceId) {
 		
-		return this.userService.addUser(user);
-	}
-	
-	@PutMapping("/user")
-	public User updateUser(@RequestBody User user) {
-		return this.userService.updateUser(user);
-	}
-	
-	@GetMapping("/user /{userId}")
-	public User getUser (@PathVariable String userId) {
-		
-		return this.userService.getUser(userId);
+		return this.resourceService.getResource(resourceId);
 	}
 	
 	
-	@DeleteMapping("/user /{userId}")
-	public ResponseEntity<HttpStatus>deleteUser(@PathVariable String userId)
+	@DeleteMapping("/resource/{resourceId}")
+	public ResponseEntity<HttpStatus>deleteResource(@PathVariable int resourceId)
 	{
 		try {
-			this.userService.deleteUser(userId);
+			this.resourceService.deleteResource(resourceId);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	
+	
+	
 
 }

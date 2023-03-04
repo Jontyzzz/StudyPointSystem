@@ -2,9 +2,6 @@ package com.studypointsystem.studypoint.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-
 import com.studypointsystem.studypoint.entity.User;
 
 public interface UserService {
