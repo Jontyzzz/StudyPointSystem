@@ -1,5 +1,7 @@
 package com.studypointsystem.studypoint.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,8 @@ public class LabAdminController {
 	
 	@GetMapping("/labadmins")
 	@ResponseBody
-	public List<LabAdmin>getAllLabAdmin(){
-		
+	public List<LabAdmin> getAllLabAdmin(){
+		//System.out.println(this.labAdminService.getAllLabAdmin());
 		return this.labAdminService.getAllLabAdmin();
 	}
 	

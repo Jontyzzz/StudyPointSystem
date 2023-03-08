@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="books")
 public class Book {
@@ -26,6 +28,7 @@ public class Book {
 	
     @ManyToOne
     @JoinColumn(name="labAdmin")
+    @JsonIgnoreProperties("labAdmin")
 	private LabAdmin labAdmin;
 
 	public String getBookId() {

@@ -9,12 +9,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "resources")
 public class Resource {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private int resourceId;
 	
 	@Column
@@ -31,6 +33,7 @@ public class Resource {
 	
 	@ManyToOne 
 	@JoinColumn(name= "labAdmin")
+	@JsonIgnoreProperties("labAdmin")
 	private LabAdmin labAdmin;
 	
 	public Resource() {

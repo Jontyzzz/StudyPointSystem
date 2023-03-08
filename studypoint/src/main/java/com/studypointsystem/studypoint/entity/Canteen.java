@@ -10,12 +10,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "canteens")
 public class Canteen {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private int itemId;
 	
 	@Column
@@ -26,6 +28,7 @@ public class Canteen {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "labAdmin")
+	@JsonIgnoreProperties("labAdmin")
 	private LabAdmin labAdmin;
 
 	public Canteen() {

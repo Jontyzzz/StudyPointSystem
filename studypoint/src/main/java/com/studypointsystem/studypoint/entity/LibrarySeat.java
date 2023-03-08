@@ -9,12 +9,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "libraryseats")
 public class LibrarySeat {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private int seatId;
 	
 	@Column
@@ -22,10 +24,11 @@ public class LibrarySeat {
 	
 	@ManyToOne
 	@JoinColumn(name = "library")
+	@JsonIgnoreProperties("library")
 	private Library library;
 	
 	public LibrarySeat() {
-		
+		super();
 	}
 
 	public LibrarySeat(int seatId, int seatAllocation, Library library) {

@@ -15,12 +15,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="libraries")
 public class Library {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private int libraryId;
 	@Column
 	private String libraryName;
@@ -28,18 +32,22 @@ public class Library {
 	private String libraryLocation;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="labAdmin")
+	@JsonIgnoreProperties("library")
 	private LabAdmin labAdmin;
 	@Column
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate year_of_eastablishment;
 	@Column
 	private int price;
 	
 	@OneToMany(mappedBy = "library",cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("library")
 	private List<Facility> facility = new ArrayList<>();
 	@Column
 	private String libraryImgUrl;
 	
 	@OneToMany(mappedBy = "library",cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("library")
 	private List<LibrarySeat> librarySeat = new ArrayList<>();
 	
 	public Library() {

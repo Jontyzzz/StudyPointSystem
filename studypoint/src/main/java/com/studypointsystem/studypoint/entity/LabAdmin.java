@@ -12,12 +12,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "labadmins")
 public class LabAdmin {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private int labAdminId;
 	
 	@Column
@@ -28,15 +30,19 @@ public class LabAdmin {
 	private String labAdminMobileNo;
 	
 	@OneToOne(mappedBy = "labAdmin")
+	@JsonIgnoreProperties("labAdmin")
 	private Library library;
 	
 	@OneToMany(mappedBy = "labAdmin")
+	@JsonIgnoreProperties("labAdmin")
 	private List<Resource> resource = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "labAdmin")
+	@JsonIgnoreProperties("labAdmin")
 	private List<Book> book = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "labAdmin")
+	@JsonIgnoreProperties("labAdmin")
 	private List<Canteen> canteen = new ArrayList<>();
 	
 	public int getLabAdminId() {

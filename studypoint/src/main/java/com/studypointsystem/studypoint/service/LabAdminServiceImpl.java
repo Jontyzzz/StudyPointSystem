@@ -1,5 +1,8 @@
 package com.studypointsystem.studypoint.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,8 +20,9 @@ public class LabAdminServiceImpl implements LabAdminService {
 
 	@Override
 	public List<LabAdmin> getAllLabAdmin() {
-		
-		return this.labAdminRepository.findAll();
+		List<LabAdmin> labAdminList = new ArrayList<>();
+		labAdminList = this.labAdminRepository.findAll();
+		return labAdminList;
 	}
 
 	@Override

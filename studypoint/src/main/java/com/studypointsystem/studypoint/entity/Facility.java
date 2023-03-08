@@ -9,12 +9,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "facilities")
 public class Facility {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private int facilityId;
 	
 	@Column
@@ -22,6 +24,7 @@ public class Facility {
 	
 	@ManyToOne
 	@JoinColumn(name="library")
+	@JsonIgnoreProperties("library")
 	private Library library;
 
 	public Facility() {

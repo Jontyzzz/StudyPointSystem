@@ -23,29 +23,29 @@ public class CanteenController {
 	@Autowired
 	public CanteenService canteenService;
 	
-	@GetMapping("/canteen")
+	@GetMapping("/items")
 	@ResponseBody
 	public List<Canteen> getAllCanteen(){
 		return this.canteenService.getAllItem();
 	}
 	
-	@PostMapping("/canteen")
+	@PostMapping("/item")
 	public Canteen addCanteen(@RequestBody Canteen canteen) {
 		
 		return this.canteenService.addItem(canteen);
 	}
 	
-	@PutMapping("/canteen")
+	@PutMapping("/item")
 	public Canteen updateUser(@RequestBody Canteen canteen) {
 		return this.canteenService.updateItem(canteen);
 	}
 	
-	@GetMapping("/canteen/{itemId}")
+	@GetMapping("/item/{itemId}")
 	public Canteen getItem(@PathVariable int itemId) {
 		return this.canteenService.getItem(itemId);
 	}
 	
-	@DeleteMapping("/canteen/{itemId}")
+	@DeleteMapping("/item/{itemId}")
 	public ResponseEntity<HttpStatus>deleteUser(@PathVariable int itemId)
 	{
 		try {
